@@ -18,8 +18,6 @@ const int   MAX_RAY_BOUNCES = 3;
 const vec3 LIGHT_DIRECTION = normalize(vec3(0.5, 1.0, 0.1));
 const vec3 LIGHT_COLOR     = vec3(1.0, 1.0, 1.0);
 
-const vec3 LIGHT_DIRECTION = normalize(vec3(0.5, 1.0, 0.1));
-const vec3 LIGHT_COLOR = vec3(1.0, 1.0, 1.0);
 
 struct RayHit {
     bool  didHit;       // ¿Hubo intersección?
@@ -143,7 +141,7 @@ float calculateShadow(vec3 surfacePosition, vec3 surfaceNormal) {
 vec3 calculateShading(vec3 surfaceColor, vec3 surfacePosition, vec3 surfaceNormal, vec3 viewDirection) {
     float diffuseIntensity = max(dot(surfaceNormal, LIGHT_DIRECTION), 0.0);
     float specularIntensity = pow(max(dot(normalize(LIGHT_DIRECTION + viewDirection), surfaceNormal), 0.0), 64);
-    float ambientFactor = 0.09;
+    float ambientFactor = 0.08;
     float shadowFactor = calculateShadow(surfacePosition, surfaceNormal);
 
     vec3 ambient = ambientFactor * surfaceColor;
@@ -188,7 +186,7 @@ void main() {
     if (hit.didHit) {
         finalColor = calculateShading(hit.color, hit.position, hit.normal, -rayDirection);
     } else {
-        finalColor = vec3(0.6, 0.8, 1.0) * (1.0 - rayDirection.y)
+        finalColor = vec3(0.0);
     }
 
     imageStore(outputImage, pixelCoords, vec4(finalColor, 1.0));

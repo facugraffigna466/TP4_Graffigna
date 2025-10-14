@@ -6,7 +6,7 @@ import numpy as np
 import glm
 
 class Quad(Model):
-    def _init_(self, position=(0,0,0), rotation=(0,0,0), scale=(1,1,1), name="quad", animated = True, hittable = True):
+    def __init__(self, position=(0,0,0), rotation=(0,0,0), scale=(1,1,1), name="quad", animated = True, hittable = True):
         self.name = name
         self.animated = animated
         self.position = glm.vec3(*position)
@@ -56,7 +56,7 @@ class Quad(Model):
         self.aabb = (glm.vec3(min(xs), min(ys), min(zs)),
                      glm.vec3(max(xs), max(ys), max(zs)))
 
-        super()._init_(vertices, indices, colors= colors, texcoords=texcoords, normals=normals)
+        super().__init__(vertices, indices, colors= colors, texcoords=texcoords, normals=normals)
 
     def check_hit(self, origin, direction):
         return self.__colision.check_hit(origin, direction)

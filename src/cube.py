@@ -1,3 +1,4 @@
+#cube.py
 
 from model import Model
 from hit import HitBox
@@ -5,7 +6,7 @@ import numpy as np
 import glm
 
 class Cube(Model):
-    def _init_(self, position=(0,0,0), rotation=(0,0,0), scale=(1,1,1), name="cube", animated = True, hittable = True):
+    def __init__(self, position=(0,0,0), rotation=(0,0,0), scale=(1,1,1), name="cube", animated = True, hittable = True):
         self.name = name
         self.animated = animated
         self.position = glm.vec3(*position)
@@ -41,7 +42,7 @@ class Cube(Model):
 
         self.__vertices = vertices
 
-        super()._init_(vertices, indices, colors, normals, texcoords)
+        super().__init__(vertices, indices, colors, normals, texcoords)
 
     @property
     def aabb(self):
