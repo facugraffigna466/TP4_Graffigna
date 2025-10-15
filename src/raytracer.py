@@ -30,7 +30,7 @@ class RayTracer:
         for y in range(self.height):
             for x in range(self.width):
                 u = x / (self.width - 1)
-                v = y / (self.height - 1)
+                v = 1 - (y / (self.height - 1))
                 ray = self.camera.raycast(u, v)
                 color = self.trace_ray(ray, objects)
                 self.framebuffer.set_pixel(x, y, color)    
