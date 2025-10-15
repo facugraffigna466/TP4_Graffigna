@@ -186,7 +186,7 @@ void main() {
     if (hit.didHit) {
         finalColor = calculateShading(hit.color, hit.position, hit.normal, -rayDirection);
     } else {
-        finalColor = vec3(0.0);
+        finalColor = vec3(0.6, 0.8, 1.0) * (1.0 - rayDirection.y);
     }
 
     imageStore(outputImage, pixelCoords, vec4(finalColor, 1.0));
