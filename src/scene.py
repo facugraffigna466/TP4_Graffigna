@@ -16,6 +16,9 @@ class Scene:
         self.projection = camera.get_perspective_matrix()
         self.time = 0
 
+    def start(self):
+        print("start")
+        
     def add_object(self,model,material):
         self.objects.append(model)
         self.graphics[model.name] = Graphics(self.ctx,model,material)

@@ -21,6 +21,14 @@ class ShaderProgram:
         self.attributes = list(attributes)
         self.uniforms = uniforms
 
+    def set_uniform(self, name, value):
+        if name in self.uniforms:
+            uniform = self.prog[name]
+            if isinstance(value, glm.mat4):
+                uniform.write(value.to_bytes())
+            elif hasattr(uniform, "value"):
+                uniform.value = value
+
 
 class ComputeShaderProgram:
     def __init__(self, ctx, compute_shader_path):
